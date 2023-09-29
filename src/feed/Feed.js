@@ -29,7 +29,7 @@ function Feed() {
   }, [])
 
   const sendPost = (e) => {
-    e.preventDefault();
+    e.preventDefault(); 
     //add a new post to the database according to he firebase version 10.3.0
     const payload = {
       name: "Arghadeep",

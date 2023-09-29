@@ -8,9 +8,20 @@ import SupervisorAccountTwoToneIcon from '@mui/icons-material/SupervisorAccountT
 import { BusinessCenter, Chat } from '@mui/icons-material';
 import NotificationsNoneTwoToneIcon from '@mui/icons-material/NotificationsNoneTwoTone';
 import man from '../images/man.png'
+import { useDispatch } from 'react-redux';
+import { signOut } from 'firebase/auth';
+import { logout } from '../features/counter/userSlice';
+import { auth } from '../firebase/firebase';
+
 
 
 function Header() {
+  const dispatch = useDispatch();
+  
+  const logoutApp = () => {
+    dispatch(logout());
+    auth.signOut();
+  }
   return (
     <div className="header">
       {/* <h1>Header Component</h1> */}
@@ -18,7 +29,7 @@ function Header() {
         <img src={logo} alt="" />
         <div className="header_search">
           <SearchIcon />
-          <input type="text"/>
+          <input placeholder='Search' type="text"/>
         </div>
       </div>
       <div className="header_right">
@@ -27,7 +38,7 @@ function Header() {
         <Headeroption Icon={BusinessCenter} title="Jobs"/>
         <Headeroption Icon={Chat} title="Messaging"/>
         <Headeroption Icon={NotificationsNoneTwoToneIcon} title="Notifications"/>
-        <Headeroption avatar={man} title="Profile"/>
+        <Headeroption avatar={man} title="Profile" onClick={logoutApp}/>
       </div>
     </div>
   )
